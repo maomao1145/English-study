@@ -1,0 +1,22 @@
+zx:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: english_study
+    username: root
+    password: 114514
+  alioss:
+    endpoint: ${zx.alioss.endpoint:}
+    access-key-id: ${zx.alioss.access-key-id:}
+    access-key-secret: ${zx.alioss.access-key-secret:}
+    bucket-name: ${zx.alioss.bucket-name:}
+  redis:
+    host: localhost
+    port: 6379
+    password: 114514
+    database: 10
+  ai:
+    api-key: sk-999857042522400f9b617379a3b38630
+    model: deepseek-chat
+    base-url: https://api.deepseek.com

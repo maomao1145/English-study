@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.mapper.UserPointsMapper">
+
+    <update id="update" parameterType="UserPoints">
+        update user_points
+        <set>
+            <if test="points != null">points = #{points},</if>
+            <if test="level != null">level = #{level},</if>
+            <if test="streakDays != null">streak_days = #{streakDays},</if>
+            <if test="lastCheckin != null">last_checkin = #{lastCheckin},</if>
+        </set>
+        where user_id = #{userId}
+    </update>
+</mapper>

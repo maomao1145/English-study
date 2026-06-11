@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.mapper.WordMapper">
+
+    <select id="pageQuery" resultType="com.zx.entity.Word">
+        select * from word
+        <where>
+            <if test="word != null and word != ''">
+                    and word like concat('%',#{word},'%')
+            </if>
+        </where>
+    </select>
+
+    <update id="update" parameterType="Word">
+        update word
+        <set>
+            <if test="word != null">
+                word = #{word},
+            </if>
+            <if test="phonetic != null">
+                phonetic = #{phonetic},
+            </if>
+            <if test="definition != null">
+                definition = #{definition},
+            </if>
+            <if test="imageUrl != null">
+                image_url = #{imageUrl},
+            </if>
+            <if test="exampleSentence != null">
+                example_sentence = #{exampleSentence},
+            </if>
+            <if test="exampleTranslation != null">
+                example_translation = #{exampleTranslation},
+            </if>
+            <if test="unitId != null">
+                unit_id = #{unitId},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+</mapper>
+
+

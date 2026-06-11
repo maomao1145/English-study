@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.mapper.UnitMapper">
+
+    <select id="pageQuery" resultType="com.zx.entity.Unit">
+        select * from unit
+        <where>
+            <if test="name != null and name != ''">
+                    and name like concat('%',#{name},'%')
+            </if>
+            <if test="grade != null and grade != ''">
+                    and grade = #{grade}
+            </if>
+        </where>
+    </select>
+
+    <update id="update" parameterType="Unit">
+        update unit
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="grade != null and grade != ''">
+                grade = #{grade},
+            </if>
+            <if test="wordCount != null">
+                word_count = #{wordCount},
+            </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+</mapper>
+
+

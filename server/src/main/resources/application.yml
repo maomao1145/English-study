@@ -1,0 +1,57 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+    druid:
+      driver-class-name: ${zx.datasource.driver-class-name}
+      url: jdbc:mysql://${zx.datasource.host}:${zx.datasource.port}/${zx.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${zx.datasource.username}
+      password: ${zx.datasource.password}
+  redis:
+    host: ${zx.redis.host}
+    port: ${zx.redis.port}
+    password: ${zx.redis.password}
+    database: ${zx.redis.database}
+
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.zx.entity
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      zx:
+        mapper: debug
+        service: info
+        controller: info
+
+zx:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: itcast
+    # 设置jwt过期时间
+    admin-ttl: 720000000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+    user-secret-key: itheima
+    user-ttl: 720000000
+    user-token-name: token
+  ai:
+    api-key: ${zx.ai.api-key:}
+    model: deepseek-chat
+    base-url: https://api.deepseek.com
+  alioss:
+    endpoint: ${zx.alioss.endpoint}
+    access-key-id: ${zx.alioss.access-key-id}
+    access-key-secret: ${zx.alioss.access-key-secret}
+    bucket-name: ${zx.alioss.bucket-name}
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.mapper.WrongBookMapper">
+
+    <select id="pageByUserId" resultType="com.zx.vo.WrongBookVO">
+        select wb.*, w.word, w.phonetic, w.definition
+        from wrong_book wb left join word w on wb.word_id = w.id
+        where wb.user_id = #{userId}
+        order by wb.last_wrong desc
+    </select>
+
+    <update id="update" parameterType="WrongBook">
+        update wrong_book
+        <set>
+            <if test="wrongCount != null">wrong_count = #{wrongCount},</if>
+            <if test="isCorrected != null">is_corrected = #{isCorrected},</if>
+            <if test="lastWrong != null">last_wrong = #{lastWrong},</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zx.mapper.UserProgressMapper">
+
+    <update id="update" parameterType="UserProgress">
+        update user_progress
+        <set>
+            <if test="totalWords != null">total_words = #{totalWords},</if>
+            <if test="learnedWords != null">learned_words = #{learnedWords},</if>
+            <if test="correctCount != null">correct_count = #{correctCount},</if>
+            <if test="wrongCount != null">wrong_count = #{wrongCount},</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
